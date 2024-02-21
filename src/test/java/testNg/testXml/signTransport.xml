@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="false" thread-count="2">
+    <listeners>
+        <listener class-name="ztest.ZTestReport" />
+    </listeners>
+    <parameter name="contractCode"  value="XSHT2206170002"/>
+    <test name="Erp">
+        <classes>
+            <class name="testNg.tms.SignTransportTest">
+            </class>
+        </classes>
+    </test>
+</suite>

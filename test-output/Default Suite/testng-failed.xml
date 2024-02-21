@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Default Suite]">
+  <test name="Erp_AutomatedTest(failed)">
+    <classes>
+      <class name="testNg.erp.Test">
+        <methods>
+          <include name="test"/>
+        </methods>
+      </class> <!-- testNg.erp.Test -->
+    </classes>
+  </test> <!-- Erp_AutomatedTest(failed) -->
+</suite> <!-- Failed suite [Default Suite] -->

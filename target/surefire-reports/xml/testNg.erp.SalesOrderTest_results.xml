@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Erp"
+           tests="6"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="18.374">
+  <properties />
+  
+  
+            <testcase name="createSaleAndPurshTest" time="2.500" classname="testNg.erp.SalesOrderTest" />
+                <testcase name="createDeliveryNotify" time="2.687" classname="testNg.erp.SalesOrderTest" />
+                <testcase name="queryTransport" time="0.841" classname="testNg.erp.SalesOrderTest" />
+                <testcase name="checkToken" time="0.301" classname="testNg.erp.SalesOrderTest" />
+                <testcase name="approveSaleTest" time="1.484" classname="testNg.erp.SalesOrderTest" />
+                <testcase name="getOrderStatus" time="10.561" classname="testNg.erp.SalesOrderTest" />
+      
+</testsuite>

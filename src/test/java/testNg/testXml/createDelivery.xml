@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="false" thread-count="2">
+    <listeners>
+        <listener class-name="ztest.ZTestReport" />
+    </listeners>
+    <parameter name="contractCode"  value="XSHT2203110009"/>
+    <parameter name="customerName"  value="广东宝莱特医用科技股份有限公司"/>
+    <test name="Erp">
+        <classes>
+            <class name="testNg.erp.CreateDeliveryTest">
+            </class>
+        </classes>
+    </test>
+</suite>

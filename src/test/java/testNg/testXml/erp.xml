@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="false" thread-count="1">
+    <parameter name="customerName"  value="${customerName}"/>
+    <parameter name="supplierName"  value="${supplierName}"/>
+    <listeners>
+        <listener class-name="ztest.ZTestReport" />
+    </listeners>
+    <test name="Erp">
+        <classes>
+            <class name="testNg.erp.SalesOrderTest">
+            </class>
+        </classes>
+    </test>
+</suite>

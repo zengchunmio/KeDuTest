@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bd63c00b-78e0-49f8-b4ce-bcbfb71c6c22" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/test/java/erp_interface/customer/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/erp_interface/customer/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/erp_interface/fms/Receipt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/erp_interface/fms/Receipt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/utils/FormatDate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/utils/FormatDate.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$PROJECT_DIR$/../../Program Files/apache-maven-3.8.4-bin/apache-maven-3.8.4" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="jdkForImporter" value="1.8" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="1.8" />
+  </component>
+  <component name="ProjectId" id="24rPIUcPCBvle1SpFE6RSnC8Lv7" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/java/testNg/erp" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\cc\Erp_AutomatedTest\src\test\java\testNg\erp" />
+      <recent name="C:\cc\Erp_AutomatedTest\src\test\java\testNg\testXml" />
+      <recent name="C:\cc\Erp_AutomatedTest\target" />
+      <recent name="C:\cc\Erp_AutomatedTest\target\test-classes" />
+      <recent name="C:\cc\Erp_AutomatedTest\target\surefire-reports" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\cc\Erp_AutomatedTest\target\test-classes" />
+      <recent name="C:\cc\Erp_AutomatedTest\target" />
+      <recent name="C:\cc\Erp_AutomatedTest\src\test\java\utils" />
+      <recent name="C:\cc\Erp_AutomatedTest\src\test\java" />
+      <recent name="C:\cc\Erp_AutomatedTest\src\test\java\testNg\erp" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="erp_interface.tms" />
+      <recent name="testNg.saller" />
+      <recent name="testNg.erp" />
+      <recent name="service.delivery" />
+      <recent name="service.salesMan" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn --version" />
+      <command value="mvn clean" />
+      <command value="mvn test" />
+    </option>
+  </component>
+  <component name="RunManager" selected="TestNG.SalesAllTest">
+    <configuration name="C:/cc/Erp_AutomatedTest/src/test/java/testNg/testXml/signTransport.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Erp_AutomatedTest" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/java/testNg/testXml/signTransport.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SalesAllTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Erp_AutomatedTest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testNg.erp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="testNg.erp" />
+      <option name="MAIN_CLASS_NAME" value="testNg.erp.SalesAllTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SalesAllTest.createSaleAndPurshTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Erp_AutomatedTest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testNg.erp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="testNg.erp" />
+      <option name="MAIN_CLASS_NAME" value="testNg.erp.SalesAllTest" />
+      <option name="METHOD_NAME" value="createSaleAndPurshTest" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SignTransportTest.queryTransport" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Erp_AutomatedTest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testNg.tms.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="testNg.tms" />
+      <option name="MAIN_CLASS_NAME" value="testNg.tms.SignTransportTest" />
+      <option name="METHOD_NAME" value="queryTransport" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SignTransportTest.test" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Erp_AutomatedTest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testNg.tms.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="testNg.tms" />
+      <option name="MAIN_CLASS_NAME" value="testNg.tms.SignTransportTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="TestNG.SalesAllTest" />
+      <item itemvalue="TestNG.C:/cc/Erp_AutomatedTest/src/test/java/testNg/testXml/signTransport.xml" />
+      <item itemvalue="TestNG.SignTransportTest.test" />
+      <item itemvalue="TestNG.SalesAllTest.createSaleAndPurshTest" />
+      <item itemvalue="TestNG.SignTransportTest.queryTransport" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="TestNG.SalesAllTest" />
+        <item itemvalue="TestNG.SignTransportTest.test" />
+        <item itemvalue="TestNG.SalesAllTest.createSaleAndPurshTest" />
+        <item itemvalue="TestNG.SignTransportTest.queryTransport" />
+        <item itemvalue="TestNG.C:/cc/Erp_AutomatedTest/src/test/java/testNg/testXml/signTransport.xml" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bd63c00b-78e0-49f8-b4ce-bcbfb71c6c22" name="Default Changelist" comment="" />
+      <created>1644385655252</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1644385655252</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ExceptionInInitializerError" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="4" />
+        </breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="java-exception" />
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
