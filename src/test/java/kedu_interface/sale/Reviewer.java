@@ -1,6 +1,7 @@
 package kedu_interface.sale;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpResponse;
 import org.testng.Assert;
@@ -8,7 +9,10 @@ import org.testng.Reporter;
 import kedu_interface.init.Init;
 import utils.GetJson;
 import utils.HttpUtil;
+import utils.JsonArraySort;
 import utils.ReadTxt;
+
+import java.util.Iterator;
 
 import static utils.GetJson.getValByKey;
 
@@ -32,9 +36,7 @@ public class Reviewer {
         Assert.assertEquals( statusCode,200);
 
         String res = HttpUtil.getResponse(response);
-
         JSONObject json = JSON.parseObject(res);
-
         int total = (int) getValByKey(json, "total");
 
         if (total == 0) {
@@ -64,9 +66,10 @@ public class Reviewer {
      * @param realName
      * @return
      */
-    public static JSONObject getPassword(String realName) {
+    public static JSONObject getPassword(String realName,String userName) {
         String token = ReadTxt.readFile();
         String url = Init.url;
+        //查询员工列表
         url += "kedu-rbac/api/user/queryPageList";
 
         String param = "{\"pageNum\":1,\"pageSize\":10,\"realName\":\"" + realName + "\",\"deptId\":\"\",\"userStatus\":null,\"stationNm\":\"\",\"phoneNo\":\"\"}";
@@ -74,19 +77,37 @@ public class Reviewer {
         HttpResponse response = HttpUtil.post(url, param, token);
 
         int statusCode = response.getStatusLine().getStatusCode();
-        Assert.assertEquals( statusCode,200);
+        Assert.assertEquals(statusCode, 200);
 
         String res = HttpUtil.getResponse(response);
 
+//        JSONObject json = JSON.parseObject(res);
+//        String userNm = (String) json.get("userNm");
         JSONObject json = JSON.parseObject(res);
 
+        JSONObject jsonObject = json.getJSONObject("body");
+
+        JSONArray list = jsonObject.getJSONArray("list");
+
+        list = JsonArraySort.arraySort(list);
         JSONObject userParam = new JSONObject();
-        String password = (String) GetJson.getValByKey(json, "password");
-        String phoneNo = (String) GetJson.getValByKey(json, "phoneNo");
 
-        userParam.put("password", password);
-        userParam.put("phoneNo", phoneNo);
+        Iterator<Object> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            JSONObject object = (JSONObject) iterator.next();
+            String userNm = (String) object.get("userNm");
 
+
+            if (userNm.equals(userName)) {
+
+                String password = (String) GetJson.getValByKey(json, "password");
+                String phoneNo = (String) GetJson.getValByKey(json, "phoneNo");
+                userParam.put("password", password);
+                userParam.put("phoneNo", phoneNo);
+            }
+
+
+        }
         return userParam;
     }
 }

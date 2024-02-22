@@ -33,7 +33,7 @@ public class KeDuLogin {
         if (statusCode == 200) {
             Reporter.log("登录成功，登录账号为：" + userName);
             JSONObject object = new JSONObject(HttpUtil.getResponse(response));
-            System.out.println("response："+object.toString());
+            System.out.println("登录成功，登录账号为："+userName);
             JsonObject body = object.getJsonObject("body");
             String access_token = body.getString("access_token");
             access_token = "bearer " + access_token;

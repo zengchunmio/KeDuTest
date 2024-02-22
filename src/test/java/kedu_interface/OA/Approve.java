@@ -40,13 +40,18 @@ public class Approve {
         while (iterator.hasNext()){
             JSONObject object = (JSONObject) iterator.next();
             String auditStatus = (String) object.get("auditStatus");
+            String businessId = (String) object.get("businessId");
             String businessNo = (String) object.get("businessNo");
             String userRealName = (String) object.get("userRealName");
+            String userName = (String) object.get("userName");
+
 
             if (auditStatus.equals("1")){
-                String token = getApproveToken(userRealName);
+                String token = getApproveToken(userRealName,userName);
                 String taskId = queryApproveOrder(token, businessNo);
-                approveOrder(token,applyid,taskId,emergencyLevel);
+                approveOrder(token,applyid,taskId,emergencyLevel,businessNo,businessId);
+            }else {
+                System.out.println("已审核");
             }
         }
     }
@@ -66,17 +71,20 @@ public class Approve {
             String auditStatus = (String) object.get("auditStatus");
             String businessNo = (String) object.get("businessNo");
             String userRealName = (String) object.get("userRealName");
+            String userName = (String) object.get("userName");
 
             if (auditStatus.equals("1")){
-                String token = getApproveToken(userRealName);
+                String token = getApproveToken(userRealName,userName);
                 String taskId = queryApproveOrder(token, businessNo);
                 approveOther(token,applyid,taskId);
+            }else {
+                System.out.println("已审核");
             }
         }
     }
 
     /**
-     * 查询合审批人员及审批编号
+     * 查询审批人员及审批编号
      *
      * @param applyId
      * @return
@@ -84,15 +92,19 @@ public class Approve {
     public static JSONObject getApplyIdAndApprovePerson(String applyId) {
         String token = ReadTxt.readFile();
         String url = Init.url;
+        //查询单据审核人
         url += "kedu-oa/oa/process/queryPageList";
 
-        String param = "{\"pageSize\":10,\"pageNum\":1,\"applyId\":\"" + applyId + "\"}";
+        String param = "{\"applyId\":\"" + applyId + "\"}";
 
         HttpResponse response = HttpUtil.post(url, param, token);
         int statusCode = response.getStatusLine().getStatusCode();
         Assert.assertEquals( statusCode,200);
 
         String rs = HttpUtil.getResponse(response);
+
+        System.out.println("rs:"+rs);
+
         JSONObject json = JSON.parseObject(rs);
 
         JSONObject jsonObject = json.getJSONObject("body");
@@ -104,8 +116,8 @@ public class Approve {
     /**
      * 审批人员登陆获取token
      */
-    public static String getApproveToken(String realName){
-        JSONObject json = Reviewer.getPassword(realName);
+    public static String getApproveToken(String realName,String userName){
+        JSONObject json = Reviewer.getPassword(realName,userName);
         String phoneNo = String.valueOf(GetJson.getValByKey(json, "phoneNo"));
         String password = String.valueOf(GetJson.getValByKey(json, "password"));
         String token = KeDuLogin.login(phoneNo, password);
@@ -117,6 +129,7 @@ public class Approve {
      */
     public static String queryApproveOrder(String token, String businessNo) {
         String url = Init.url;
+        //查询审核列表
         url += "kedu-oa/oa/apply/queryPageList";
 
         String param = "{\"businessNo\":\"" + businessNo + "\",\"auditStatus\":\"1\",\"pageNum\":1,\"pageSize\":10}";
@@ -127,7 +140,7 @@ public class Approve {
 
         String rs = HttpUtil.getResponse(response);
         JSONObject json = JSON.parseObject(rs);
-
+        System.out.println("rs:"+rs);
         String taskId = (String) getValByKey(json, "taskId");
         return taskId;
     }
@@ -135,23 +148,34 @@ public class Approve {
     /**
      * 审批需求单任务
      */
-    public static void approveOrder(String token, String applyId, String taskId,String emergencyLevel) {
+    public static void approveOrder(String token, String applyId, String taskId,String emergencyLevel,String businessNo,String businessId) {
         String url = Init.url;
+        //  审核
         url += "kedu-oa/oa/task/completeTask";
 
-        String param = "{\"taskId\":\"" + taskId + "\",\"applyId\":\"" + applyId + "\",\"auditResult\":1,\"auditOpinion\":\"\",\"emergencyLevel\":\" "+ emergencyLevel + "\"}";
-
+        String param = "{\"taskId\":\"" + taskId + "\",\"applyId\":\"" + applyId + "\",\"auditResult\":1,\"auditOpinion\":\"\"," +
+                "\"emergencyLevel\":\""+ emergencyLevel + "\",\"businessNo\":\""+businessNo+"\",\"businessId\":\""+businessId+"\"}";
+        System.out.println("param:"+param);
         HttpResponse response = HttpUtil.post(url, param, token);
-        int statusCode = response.getStatusLine().getStatusCode();
-        Assert.assertEquals( statusCode,200);
+        //System.out.println("response:"+response);
+//        int statusCode = response.getStatusLine().getStatusCode();
+//        System.out.println("code:"+statusCode);
+//
+
 
         String rs = HttpUtil.getResponse(response);
         JSONObject json = JSON.parseObject(rs);
+        System.out.println("rs:"+rs);
+        int statusCode = ((JSONObject)getValByKey(json, "heads")).getInteger("code");
+        Assert.assertEquals( statusCode,200);
 
-        boolean result = (boolean) getValByKey(json, "body");
-        if (result) {
-            Reporter.log("审批成功,id为：" + applyId);
-        }
+        System.out.println(rs);
+
+
+//        boolean result = (boolean) getValByKey(json, "body");
+//        if (result) {
+//            Reporter.log("审批成功,id为：" + applyId);
+//        }
     }
 
 
