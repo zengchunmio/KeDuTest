@@ -6,7 +6,6 @@ import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpResponse;
 import org.testng.Assert;
 import org.testng.Reporter;
-import kedu_interface.customer.Customer;
 import kedu_interface.init.Init;
 import kedu_interface.sale.Query;
 import utils.FormatDate;

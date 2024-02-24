@@ -1,6 +1,7 @@
 package kedu_interface.rbac;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import kedu_interface.init.Init;
 import org.apache.http.HttpResponse;
@@ -8,6 +9,7 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import utils.GetJson;
 import utils.HttpUtil;
+import utils.JsonArraySort;
 import utils.ReadTxt;
 
 import static utils.GetJson.getValByKey;
@@ -88,5 +90,62 @@ public class User {
         userParam.put("phoneNo", phoneNo);
 
         return userParam;
+    }
+
+    /**
+     * 查询个人收货地址
+     *
+     * @param  userId
+     * @return
+     */
+    public static JSONObject getUserReceiver(String userId)  {
+        String token = ReadTxt.readFile();
+        String url = Init.url;
+        //查询用户地址
+        url += "kedu-rbac/api/user/address/list";
+
+        String param = "{\"userId\":\""+userId+"\"}";
+        HttpResponse response = HttpUtil.post(url, param, token);
+
+        int statusCode = response.getStatusLine().getStatusCode();
+        Assert.assertEquals( statusCode,200);
+
+        String res = HttpUtil.getResponse(response);
+
+        JSONObject json = JSON.parseObject(res);
+        JSONArray list = json.getJSONArray("body");
+
+        list = JsonArraySort.arraySort(list);
+
+
+        if(!list.isEmpty()){
+            JSONObject json1= list.getJSONObject(0);
+            String name = (String) GetJson.getValByKey(json1, "deliveryName");
+            String phone = (String) GetJson.getValByKey(json1, "phoneNo");
+//            String postcode = (String) GetJson.getValByKey(json1, "postcode");
+            String provinceId = (String) GetJson.getValByKey(json1, "provinceId");
+            String provinceName = (String) GetJson.getValByKey(json1, "provinceName");
+            String cityId = (String) GetJson.getValByKey(json1, "cityId");
+            String cityName = (String) GetJson.getValByKey(json1, "cityName");
+            String areaId = (String) GetJson.getValByKey(json1, "areaId");
+            String areaName = (String) GetJson.getValByKey(json1, "areaName");
+            String detailAddress = (String) GetJson.getValByKey(json1, "detailAddress");
+
+            JSONObject recevierParam = new JSONObject();
+            recevierParam.put("name", name);
+            recevierParam.put("phone", phone);
+//            recevierParam.put("postcode", postcode);
+            recevierParam.put("provinceId", provinceId);
+            recevierParam.put("provinceName", provinceName);
+            recevierParam.put("cityId", cityId);
+            recevierParam.put("cityName", cityName);
+            recevierParam.put("areaId", areaId);
+            recevierParam.put("areaName", areaName);
+            recevierParam.put("detailAddress", detailAddress);
+            return recevierParam;
+        }
+
+        return null;
+
     }
 }

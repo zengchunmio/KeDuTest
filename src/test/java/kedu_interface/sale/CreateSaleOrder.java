@@ -3,7 +3,6 @@ package kedu_interface.sale;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import kedu_interface.customer.Customer;
 import kedu_interface.goods.AllGoods;
 import kedu_interface.goods.SupplierGoods;
 import kedu_interface.init.Init;

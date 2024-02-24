@@ -1,4 +1,4 @@
-package kedu_interface.customer;
+package kedu_interface.crm;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -11,6 +11,7 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import utils.GetJson;
 import utils.HttpUtil;
+import utils.JsonArraySort;
 import utils.ReadTxt;
 
 import java.util.Date;
@@ -29,17 +30,18 @@ public class Customer {
     public static JSONObject getCompany(String companyName) {
         String token = ReadTxt.readFile();
         String url = Init.url;
-        url += "xiaozi-crm/customer/page";
+        url += "xkedu-crm/wireless/customer/page";
 
-        if (companyName==null){
-            companyName = "cc测试";
-        }
+//        if (companyName==null){
+//            companyName = "嘉兴市妇幼保健院";
+//        }
 
         String param = "{\n" +
                 "    \"pageNum\":1,\n" +
                 "    \"pageSize\":1,\n" +
                 "    \"status\":\"\",\n" +
-                "    \"type\":\"\",\n" +
+                "    \"customerType\":\"\",\n" +
+                "    \"finalUserName\":\"\",\n" +
                 "    \"nameOrNameEn\":\"" + companyName + "\",\n" +
                 "    \"orderBy\":[\n" +
                 "        {\n" +
@@ -58,16 +60,16 @@ public class Customer {
 
         JSONObject json = JSON.parseObject(res);
 
-        int total = (int) getValByKey(json, "total");
-
-        if (total == 0) {
-            param = "{\"pageNum\":1,\"pageSize\":1,\"status\":\"\",\"type\":\"\",\"nameOrNameEn\":\"\",\"orderBy\":[{\"orderByProperty\":\"createTime\",\"orderByType\":\"DESC\"}]}";
-            response = HttpUtil.post(url, param, token);
-            String updateRes = HttpUtil.getResponse(response);
-            json = JSON.parseObject(updateRes);
-            String clientName = (String) GetJson.getValByKey(json, "name");
-            Reporter.log("没有此客户(" + companyName + "),使用系统默认客户:（"+clientName+")");
-        }
+//        int total = (int) getValByKey(json, "total");
+//
+//        if (total == 0) {
+//            param = "{\"pageNum\":1,\"pageSize\":1,\"status\":\"\",\"type\":\"\",\"nameOrNameEn\":\"\",\"orderBy\":[{\"orderByProperty\":\"createTime\",\"orderByType\":\"DESC\"}]}";
+//            response = HttpUtil.post(url, param, token);
+//            String updateRes = HttpUtil.getResponse(response);
+//            json = JSON.parseObject(updateRes);
+//            String clientName = (String) GetJson.getValByKey(json, "name");
+//            Reporter.log("没有此客户(" + companyName + "),使用系统默认客户:（"+clientName+")");
+//        }
 
         JSONObject companyParam = new JSONObject();
         String clientID = (String) getValByKey(json, "id");
@@ -370,5 +372,72 @@ public class Customer {
 
 
         return json;
+    }
+
+    /**
+     * 查询客户收货地址
+     *
+     * @param  customerName
+     * @return
+     */
+    public static JSONObject getCustomerReceiver(String customerName)  {
+        String token = ReadTxt.readFile();
+        String url = Init.url;
+        //查询客户收货地址
+        url += "kedu-crm/receiver/resultList";
+
+        String param = "{\n" +
+                "    \"pageNum\":1,\n" +
+                "    \"pageSize\":1,\n" +
+                "    \"customerName\":\"" + customerName + "\",\n" +
+                "    \"orderBy\":[\n" +
+                "        {\n" +
+                "            \"orderByProperty\":\"createTime\",\n" +
+                "            \"orderByType\":\"DESC\"\n" +
+                "        }\n" +
+                "    ]\n" +
+                "}";
+        HttpResponse response = HttpUtil.post(url, param, token);
+
+        int statusCode = response.getStatusLine().getStatusCode();
+        Assert.assertEquals( statusCode,200);
+
+        String res = HttpUtil.getResponse(response);
+
+        JSONObject json = JSON.parseObject(res);
+        JSONArray list = json.getJSONArray("body");
+
+        list = JsonArraySort.arraySort(list);
+
+
+        if(!list.isEmpty()){
+            JSONObject json1= list.getJSONObject(0);
+            String name = (String) GetJson.getValByKey(json1, "name");
+            String phone = (String) GetJson.getValByKey(json1, "mobilePhone");
+            String postcode = (String) GetJson.getValByKey(json1, "postcode");
+            String provinceId = (String) GetJson.getValByKey(json1, "provinceId");
+            String provinceName = (String) GetJson.getValByKey(json1, "provinceName");
+            String cityId = (String) GetJson.getValByKey(json1, "cityId");
+            String cityName = (String) GetJson.getValByKey(json1, "cityName");
+            String areaId = (String) GetJson.getValByKey(json1, "areaId");
+            String areaName = (String) GetJson.getValByKey(json1, "areaName");
+            String detailAddress = (String) GetJson.getValByKey(json1, "detailAddress");
+
+            JSONObject recevierParam = new JSONObject();
+            recevierParam.put("name", name);
+            recevierParam.put("phone", phone);
+            recevierParam.put("postcode", postcode);
+            recevierParam.put("provinceId", provinceId);
+            recevierParam.put("provinceName", provinceName);
+            recevierParam.put("cityId", cityId);
+            recevierParam.put("cityName", cityName);
+            recevierParam.put("areaId", areaId);
+            recevierParam.put("areaName", areaName);
+            recevierParam.put("detailAddress", detailAddress);
+            return recevierParam;
+        }
+
+        return null;
+
     }
 }
