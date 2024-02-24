@@ -4,6 +4,7 @@ package kedu_interface.fms;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import kedu_interface.crm.Customer;
 import org.apache.http.HttpResponse;
 import org.testng.Assert;
 import org.testng.Reporter;
