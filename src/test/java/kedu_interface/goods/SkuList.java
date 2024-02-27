@@ -12,6 +12,7 @@ import utils.HttpUtil;
 import utils.JsonArraySort;
 import utils.ReadTxt;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import static utils.GetJson.getValByKey;
@@ -42,16 +43,21 @@ public class SkuList {
             Reporter.log("没有此商品");
         }
 
+        JSONObject goodParam = new JSONObject();
+
 
         JSONArray list = (JSONArray)getValByKey(json,"list");
         Iterator<Object> iterator = list.iterator();
         while (iterator.hasNext()) {
             JSONObject object = (JSONObject) iterator.next();
             JSONArray imageList = (JSONArray)object.get("imageList");
+            ArrayList<String> imageUrls = new ArrayList<>();
             for (int i = 0;i<imageList.size();i++){
                 JSONObject image = (JSONObject) imageList.get(i);
                 String imageUrl = (String) image.get("url");
+                imageUrls.add(imageUrl);
             }
+
             String skuCategoryId = (String) getValByKey(json, "categoryId");
             String categoryName = (String) GetJson.getValByKey(json, "categoryName");
             String categoryAllName = (String) GetJson.getValByKey(json, "categoryAllName");
@@ -59,9 +65,9 @@ public class SkuList {
             String skuModel = (String) GetJson.getValByKey(json, "model");
             String brandName = (String) GetJson.getValByKey(json, "brandName");
             String skuSpec = (String) GetJson.getValByKey(json, "spec");
-            String unitName = (String) GetJson.getValByKey(json, "unitName");
+            String measurementUnit = (String) GetJson.getValByKey(json, "unitName");
 
-            JSONObject goodParam = new JSONObject();
+            goodParam.put("goodsImageList", imageUrls);
             goodParam.put("categoryId", skuCategoryId);
             goodParam.put("categoryName", categoryName);
             goodParam.put("categoryAllName", categoryAllName);
@@ -69,13 +75,10 @@ public class SkuList {
             goodParam.put("model", skuModel);
             goodParam.put("brandName", brandName);
             goodParam.put("spec", skuSpec);
-            goodParam.put("unitName", unitName);
-
-
-            return goodParam;
+            goodParam.put("measurementUnit", measurementUnit);
 
         }
 
-        return null;
+        return goodParam;
     }
 }
