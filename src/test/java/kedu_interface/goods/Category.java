@@ -1,4 +1,4 @@
-package kedu_interface.pms;
+package kedu_interface.goods;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -53,5 +53,39 @@ public class Category {
 
         return getCategoryIdAndName;
 
+    }
+
+    /**
+     * 查询分类树结构
+     *
+     * @param
+     * @return
+     */
+    public static JSONObject getCategoryTree(String pid,String includeSelf) {
+        String token = ReadTxt.readFile();
+        String url = Init.url;
+        url += "kedu-pms/category/tree";
+
+        String param = "{\"pid\":\""+pid+"\",\"includeSelf\":\""+includeSelf+"\"}";
+        HttpResponse response = HttpUtil.post(url, param, token);
+
+
+        int statusCode = response.getStatusLine().getStatusCode();
+        Assert.assertEquals( statusCode,200);
+
+        String res = HttpUtil.getResponse(response);
+        JSONObject json = JSON.parseObject(res);
+        JSONObject getCategoryIdAndName = new JSONObject();
+        JSONArray list = json.getJSONArray("body");
+        list = JsonArraySort.arraySort(list);
+        Iterator<Object> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            JSONObject object = (JSONObject) iterator.next();
+            String name = (String) object.get("name");
+            String id = (String) object.get("id");
+            getCategoryIdAndName.put("id", id);
+            getCategoryIdAndName.put("name", name);
+        }
+        return getCategoryIdAndName;
     }
 }

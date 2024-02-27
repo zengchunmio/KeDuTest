@@ -1,8 +1,6 @@
 package testNg.kedu;
 
 import kedu_interface.login.KeDuLogin;
-import kedu_interface.pms.Category;
-import kedu_interface.rbac.Unit;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
